@@ -23,6 +23,7 @@ createApp({
         this.fetchWeather(); // Fetch London's weather on page load
     },
     methods: {
+        // Fetch random user profile
         fetchRandomUser() {
             fetch('https://comp6062.liamstewart.ca/random-user-profile')
                 .then(response => response.json())
@@ -36,6 +37,7 @@ createApp({
                 });
         },
 
+        // Fetch weather information
         fetchWeather() {
             if (!this.weatherForm.city || !this.weatherForm.province || !this.weatherForm.country) {
                 this.weatherInfo = {
@@ -75,6 +77,7 @@ createApp({
                 });
         },
 
+        // Fetch dictionary definition
         fetchDefinition() {
             if (!this.dictionaryWord) {
                 this.dictionaryResult = {
