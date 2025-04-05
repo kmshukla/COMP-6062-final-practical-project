@@ -71,4 +71,16 @@
         </form>
         <!-- Dictionary Display -->
         <div v-if="dictionaryResult" class="mt-4">
-            <p><strong>Word:</strong>
+            <p><strong>Word:</strong> {{ dictionaryResult.word }}</p>
+            <p><strong>Phonetic:</strong> {{ dictionaryResult.phonetic }}</p>
+            <p><strong>Definition:</strong> {{ dictionaryResult.definition }}</p>
+        </div>
+    </section>
+
+</div> <!-- End of #app -->
+
+<!-- Custom JS must be loaded LAST -->
+<script src="scripts/app.js"></script>
+
+</body>
+</html>
