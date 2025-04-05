@@ -45,9 +45,7 @@ createApp({
         },
 
         fetchWeather() {
-            const url = `https://comp6062.liamstewart.ca/weather-information?city=${encodeURIComponent(this.weatherForm.city)}&province=${encodeURIComponent(this.weatherForm.province)}&country=${encodeURIComponent(this.weatherForm.country)}`;
-
-            fetch(url)
+            fetch(`https://comp6062.liamstewart.ca/weather-information?city=Toronto&province=Ontario&country=Canada`)
                 .then(response => response.json())
                 .then(data => {
                     this.weatherInfo.temperature = data.temperature;
@@ -60,9 +58,7 @@ createApp({
         },
 
         fetchDefinition() {
-            const url = `https://comp6062.liamstewart.ca/define?word=${encodeURIComponent(this.dictionaryWord)}`;
-
-            fetch(url)
+            fetch(`https://comp6062.liamstewart.ca/define?word=Bottle`)
                 .then(response => response.json())
                 .then(data => {
                     this.dictionaryResult.word = data.word;
