@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMP-6062 Final Practical Project - Kangkan Mitra</title>
+
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Vue.js CDN -->
+    <script src="https://unpkg.com/vue@3.4.31/dist/vue.global.js"></script>
+</head>
+<body>
+
+    <div id="app" class="container my-5">
+
+        <!-- Header -->
+        <header class="mb-5 text-center">
+            <h1>Kangkan Mitra - 1184320</h1>
+            <p>COMP-6062 Final Practical Project</p>
+        </header>
+
+        <!-- Random User Profile Module -->
+        <section class="mb-5">
+            <h2>Random User Profile</h2>
+            <div class="card text-center p-3">
+                <img :src="userProfile.picture" alt="Profile Picture" class="img-fluid rounded-circle mb-3" width="150">
+                <h3>{{ userProfile.name }}</h3>
+                <p>Age: {{ userProfile.age }}</p>
+                <button class="btn btn-primary mt-2" @click="fetchRandomUser">New Profile</button>
+            </div>
+        </section>
+
+        <!-- Weather Module -->
+        <section class="mb-5">
+            <h2>Weather Information</h2>
+            <form @submit.prevent="fetchWeather">
+                <div class="row g-3 mb-3">
+                    <div class="col-md-4">
+                        <input v-model="weatherForm.city" type="text" class="form-control" placeholder="City" required>
+                    </div>
+                    <div class="col-md-4">
+                        <input v-model="weatherForm.province" type="text" class="form-control" placeholder="Province" required>
+                    </div>
+                    <div class="col-md-4">
+                        <input v-model="weatherForm.country" type="text" class="form-control" placeholder="Country" required>
+                    </div>
+                </div>
+                <button class="btn btn-success" type="submit">Get Weather</button>
+            </form>
+            <div v-if="weatherInfo" class="mt-4">
+                <p><strong>Temperature:</strong> {{ weatherInfo.temperature }}</p>
+                <p><strong>Wind:</strong> {{ weatherInfo.wind }}</p>
+                <p><strong>Description:</strong> {{ weatherInfo.description }}</p>
+            </div>
+        </section>
+
+        <!-- Dictionary Module -->
+        <section class="mb-5">
+            <h2>Dictionary Lookup</h2>
+            <form @submit.prevent="fetchDefinition">
+                <div class="input-group mb-3">
+                    <input v-model="dictionaryWord" type="text" class="form-control" placeholder="Enter a word" required>
+                    <button class="btn btn-info" type="submit">Define</button>
+                </div>
+            </form>
+            <div v-if="dictionaryResult" class="mt-4">
+                <p><strong>Word:</strong> {{ dictionaryResult.word }}</p>
+                <p><strong>Phonetic:</strong> {{ dictionaryResult.phonetic }}</p>
+                <p><strong>Definition:</strong> {{ dictionaryResult.definition }}</p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Custom JS -->
+    <script src="scripts/app.js"></script>
+
+</body>
+</html>
