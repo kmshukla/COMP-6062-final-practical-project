@@ -3,33 +3,26 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
-            // Data for Random User Profile
             userProfile: {
                 name: '',
                 age: '',
                 picture: ''
             },
-            // Data for Weather Form Inputs
             weatherForm: {
                 city: 'London',
                 province: 'Ontario',
                 country: 'Canada'
             },
-            // Data for Weather Information
             weatherInfo: null,
-            // Data for Dictionary Search Word
             dictionaryWord: '',
-            // Data for Dictionary Search Result
             dictionaryResult: null
         }
     },
     created() {
-        // Fetch initial random user and weather info when app is created
         this.fetchRandomUser();
-        this.fetchWeather();
+        this.fetchWeather(); // Fetch London's weather on page load
     },
     methods: {
-        // Fetch a random user profile from API
         fetchRandomUser() {
             fetch('http://comp6062.liamstewart.ca/random-user-profile')
                 .then(response => response.json())
@@ -38,10 +31,11 @@ createApp({
                     this.userProfile.age = data.age;
                     this.userProfile.picture = data.profile_picture || 'https://via.placeholder.com/150';
                 })
-                .catch(error => console.error('Error fetching random user:', error));
+                .catch(error => {
+                    console.error('Error fetching random user:', error);
+                });
         },
 
-        // Fetch weather information based on city, province, and country
         fetchWeather() {
             if (!this.weatherForm.city || !this.weatherForm.province || !this.weatherForm.country) {
                 this.weatherInfo = {
@@ -53,7 +47,7 @@ createApp({
             }
 
             const url = `http://comp6062.liamstewart.ca/weather-information?city=${encodeURIComponent(this.weatherForm.city)}&province=${encodeURIComponent(this.weatherForm.province)}&country=${encodeURIComponent(this.weatherForm.country)}`;
-            
+
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
@@ -76,14 +70,23 @@ createApp({
                     this.weatherInfo = {
                         temperature: "Error",
                         wind: "Error",
-                        description: "Something went wrong."
+                        description: "Unable to fetch weather information."
                     };
                 });
         },
 
-        // Fetch dictionary definition for a given word
         fetchDefinition() {
-            const url = `https://comp6062.liamstewart.ca/define?word=${this.dictionaryWord}`;
+            if (!this.dictionaryWord) {
+                this.dictionaryResult = {
+                    word: 'No word entered',
+                    phonetic: '',
+                    definition: 'Please enter a word to search.'
+                };
+                return;
+            }
+
+            const url = `https://comp6062.liamstewart.ca/define?word=${encodeURIComponent(this.dictionaryWord)}`;
+
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
@@ -97,7 +100,7 @@ createApp({
                         this.dictionaryResult = {
                             word: 'Not Found',
                             phonetic: '',
-                            definition: 'No definition found for the given word.'
+                            definition: 'No definition found for the entered word.'
                         };
                     }
                 })
@@ -106,7 +109,7 @@ createApp({
                     this.dictionaryResult = {
                         word: 'Error',
                         phonetic: '',
-                        definition: 'Something went wrong fetching the definition.'
+                        definition: 'Unable to fetch definition.'
                     };
                 });
         }
