@@ -52,11 +52,6 @@
                 </div>
                 <button class="btn btn-success" type="submit">Get Weather</button>
             </form>
-            <div v-if="weatherInfo" class="mt-4">
-                <p><strong>Temperature:</strong> {{ weatherInfo.temperature }}</p>
-                <p><strong>Wind:</strong> {{ weatherInfo.wind }}</p>
-                <p><strong>Description:</strong> {{ weatherInfo.description }}</p>
-            </div>
         </section>
 
         <!-- Dictionary Module -->
@@ -65,15 +60,11 @@
             <form @submit.prevent="fetchDefinition">
                 <div class="input-group mb-3">
                     <input v-model="dictionaryWord" type="text" class="form-control" placeholder="Enter a word" required>
-                    <button class="btn btn-info" type="submit">Define</button>
+                    <button class="btn btn-dark-green" type="submit">Define</button>
                 </div>
             </form>
-            <div v-if="dictionaryResult" class="mt-4">
-                <p><strong>Word:</strong> {{ dictionaryResult.word }}</p>
-                <p><strong>Phonetic:</strong> {{ dictionaryResult.phonetic }}</p>
-                <p><strong>Definition:</strong> {{ dictionaryResult.definition }}</p>
-            </div>
         </section>
+
 
     </div>
 
