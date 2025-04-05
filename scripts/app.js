@@ -36,7 +36,7 @@ createApp({
                 .then(data => {
                     this.userProfile.name = data.firstName + ' ' + data.lastName;
                     this.userProfile.age = data.age;
-                    this.userProfile.picture = data.picture;
+                    this.userProfile.picture = data.picture || 'https://via.placeholder.com/150';
                 })
                 .catch(error => console.error('Error fetching random user:', error));
         },
