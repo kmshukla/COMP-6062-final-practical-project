@@ -61,13 +61,15 @@ createApp({
             fetch(`https://comp6062.liamstewart.ca/define?word=Bottle`)
                 .then(response => response.json())
                 .then(data => {
-                    this.dictionaryResult.word = data.word;
-                    this.dictionaryResult.phonetic = data.phonetic;
-                    this.dictionaryResult.definition = data.definition;
+                    const result = data[0]; // Get the first item from array
+                    this.dictionaryResult.word = result.word;
+                    this.dictionaryResult.phonetic = result.phonetic;
+                    this.dictionaryResult.definition = result.definition;
                 })
                 .catch(error => {
                     console.error('Error fetching definition:', error);
                 });
+        }
         }
     }
 }).mount('#app');
