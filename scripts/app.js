@@ -49,8 +49,8 @@ createApp({
                 .then(response => response.json())
                 .then(data => {
                     this.weatherInfo.temperature = data.temperature;
-                    this.weatherInfo.wind = data.wind;
-                    this.weatherInfo.description = data.description;
+                    this.weatherInfo.wind_speed = data.wind_speed;
+                    this.weatherInfo.weather_description = data.weather_description;
                 })
                 .catch(error => {
                     console.error('Error fetching weather information:', error);
