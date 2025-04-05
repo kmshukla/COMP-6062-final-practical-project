@@ -24,7 +24,7 @@ createApp({
     },
     methods: {
         fetchRandomUser() {
-            fetch('http://comp6062.liamstewart.ca/random-user-profile')
+            fetch('https://comp6062.liamstewart.ca/random-user-profile')
                 .then(response => response.json())
                 .then(data => {
                     this.userProfile.name = data.first_name + ' ' + data.last_name;
@@ -46,7 +46,7 @@ createApp({
                 return;
             }
 
-            const url = `http://comp6062.liamstewart.ca/weather-information?city=${encodeURIComponent(this.weatherForm.city)}&province=${encodeURIComponent(this.weatherForm.province)}&country=${encodeURIComponent(this.weatherForm.country)}`;
+            const url = `https://comp6062.liamstewart.ca/weather-information?city=${encodeURIComponent(this.weatherForm.city)}&province=${encodeURIComponent(this.weatherForm.province)}&country=${encodeURIComponent(this.weatherForm.country)}`;
 
             fetch(url)
                 .then(response => response.json())
