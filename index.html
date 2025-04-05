@@ -53,10 +53,16 @@
             <button class="btn btn-forest-green" type="submit">Get Weather</button>
         </form>
         <!-- Weather Display -->
-        <div v-if="weatherInfo" class="mt-4">
+        <div v-if="weatherInfo.temperature" class="mt-4">
             <p><strong>Temperature:</strong> {{ weatherInfo.temperature }}</p>
             <p><strong>Wind Speed:</strong> {{ weatherInfo.wind_speed }}</p>
             <p><strong>Weather Description:</strong> {{ weatherInfo.weather_description }}</p>
+            <p><strong>City:</strong> {{ locationInfo.city }}</p>
+            <p><strong>Region:</strong> {{ locationInfo.region }}</p>
+            <p><strong>Country:</strong> {{ locationInfo.country }}</p>
+            <p><strong>Latitude:</strong> {{ locationInfo.latitude }}</p>
+            <p><strong>Longitude:</strong> {{ locationInfo.longitude }}</p>
+            <p><strong>Population:</strong> {{ locationInfo.population }}</p>
         </div>
     </section>
 
@@ -70,7 +76,7 @@
             </div>
         </form>
         <!-- Dictionary Display -->
-        <div v-if="dictionaryResult" class="mt-4">
+        <div v-if="dictionaryResult.word" class="mt-4">
             <p><strong>Word:</strong> {{ dictionaryResult.word }}</p>
             <p><strong>Phonetic:</strong> {{ dictionaryResult.phonetic }}</p>
             <p><strong>Definition:</strong> {{ dictionaryResult.definition }}</p>

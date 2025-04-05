@@ -9,14 +9,19 @@ createApp({
                 picture: ''
             },
             weatherForm: {
-                city: 'London',
+                city: 'Toronto',
                 province: 'Ontario',
                 country: 'Canada'
             },
             weatherInfo: {
                 temperature: '',
-                wind: '',
-                description: ''
+                wind_speed: '',
+                weather_description: ''
+            },
+            locationInfo: {
+                city: '',
+                region: '',
+                country: ''
             },
             dictionaryWord: '',
             dictionaryResult: {
@@ -51,6 +56,12 @@ createApp({
                     this.weatherInfo.temperature = data.temperature;
                     this.weatherInfo.wind_speed = data.wind_speed;
                     this.weatherInfo.weather_description = data.weather_description;
+                    this.locationInfo.city = data.location.city;
+                    this.locationInfo.region = data.location.region;
+                    this.locationInfo.country = data.location.country;
+                    this.locationInfo.latitude = data.location.latitude;
+                    this.locationInfo.longitude = data.location.longitude;
+                    this.locationInfo.population = data.location.population;
                 })
                 .catch(error => {
                     console.error('Error fetching weather information:', error);
@@ -61,7 +72,7 @@ createApp({
             fetch(`https://comp6062.liamstewart.ca/define?word=Bottle`)
                 .then(response => response.json())
                 .then(data => {
-                    const result = data[0]; // Get the first item from array
+                    const result = data[0];
                     this.dictionaryResult.word = result.word;
                     this.dictionaryResult.phonetic = result.phonetic;
                     this.dictionaryResult.definition = result.definition;
@@ -69,7 +80,6 @@ createApp({
                 .catch(error => {
                     console.error('Error fetching definition:', error);
                 });
-        }
         }
     }
 }).mount('#app');
