@@ -7,7 +7,7 @@
 
 /* Body styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: Georgia, sans-serif;
     background-color: #e6f2e6; /* Light green background */
     padding: 20px;
 }
@@ -45,7 +45,7 @@ button {
 
 /* Profile picture style */
 .card img {
-    border: 4px solid #198754;
+    border: 4px groove #198754;
 }
 
 /* Custom Forest Green Button */
